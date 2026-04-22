@@ -1,0 +1,3 @@
+# food-buddy
+
+Coming soon.
