@@ -1,4 +1,5 @@
 import { AddPlaceForm } from "@/components/AddPlaceForm";
+import { GooglePlaceSearch } from "@/components/GooglePlaceSearch";
 import { PlaceList } from "@/components/PlaceList";
 import { listPlaces, seedPlacesIfEmpty } from "@/lib/places/store";
 
@@ -18,10 +19,10 @@ export default function Home() {
           Lugares guardados
         </h1>
         <p className="text-sm text-zinc-600">
-          Lista local para ir armando el v0. Marcá con la estrella si es favorito o
-          no; también podés elegir eso al guardar.
+          Buscá un lugar en Google o cargalo a mano. La estrella lo marca como favorito.
         </p>
       </header>
+      <GooglePlaceSearch />
       <AddPlaceForm />
       <PlaceList places={places} />
     </div>

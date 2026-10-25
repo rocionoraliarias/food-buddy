@@ -35,6 +35,18 @@ export function createPlace(input: NewPlaceInput, db: AppDb = getDb()): Place {
     throw new Error("El nombre es obligatorio.");
   }
 
+  const googlePlaceId = emptyToNull(input.googlePlaceId);
+  if (googlePlaceId) {
+    const duplicate = db
+      .select()
+      .from(places)
+      .where(eq(places.googlePlaceId, googlePlaceId))
+      .get();
+    if (duplicate) {
+      throw new Error("Ese lugar de Google ya está guardado.");
+    }
+  }
+
   const id = nanoid(12);
   const createdAt = Date.now();
 
@@ -49,6 +61,7 @@ export function createPlace(input: NewPlaceInput, db: AppDb = getDb()): Place {
       country: emptyToNull(input.country) ?? "Argentina",
       tags: serializeTags(parseTags(input.tags)),
       isFavorite: Boolean(input.isFavorite),
+      googlePlaceId,
       createdAt,
     })
     .run();

@@ -51,6 +51,15 @@ describe("place store", () => {
     expect(setPlaceFavorite(saved.id, false, db).isFavorite).toBe(false);
   });
 
+  it("rejects a second save of the same Google place", () => {
+    const db = tempDb();
+    createPlace({ name: "Cuervo Café", googlePlaceId: "ChIJpalermoCafe" }, db);
+    expect(() =>
+      createPlace({ name: "Cuervo Café otra vez", googlePlaceId: "ChIJpalermoCafe" }, db),
+    ).toThrow(/ya está guardado/i);
+    expect(listPlaces(db)).toHaveLength(1);
+  });
+
   it("seeds sample places once", () => {
     const db = tempDb();
     seedPlacesIfEmpty(db);
