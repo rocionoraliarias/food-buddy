@@ -20,6 +20,7 @@ export type NewPlaceInput = {
   country?: string;
   tags?: string[] | string;
   isFavorite?: boolean;
+  googlePlaceId?: string;
 };
 
 export type PlaceGroup = {

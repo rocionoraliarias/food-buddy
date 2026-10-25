@@ -10,5 +10,6 @@ export const places = sqliteTable("places", {
   country: text("country"),
   tags: text("tags").notNull().default("[]"),
   isFavorite: integer("is_favorite", { mode: "boolean" }).notNull().default(false),
+  googlePlaceId: text("google_place_id"),
   createdAt: integer("created_at").notNull(),
 });

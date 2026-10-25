@@ -20,8 +20,19 @@ function ensureSchema(sqlite: Database.Database) {
       country TEXT,
       tags TEXT NOT NULL DEFAULT '[]',
       is_favorite INTEGER NOT NULL DEFAULT 0,
+      google_place_id TEXT,
       created_at INTEGER NOT NULL
     );
+  `);
+
+  const columns = sqlite.prepare("PRAGMA table_info(places)").all() as { name: string }[];
+  if (!columns.some((column) => column.name === "google_place_id")) {
+    sqlite.exec("ALTER TABLE places ADD COLUMN google_place_id TEXT");
+  }
+  sqlite.exec(`
+    CREATE UNIQUE INDEX IF NOT EXISTS places_google_place_id_idx
+    ON places (google_place_id)
+    WHERE google_place_id IS NOT NULL;
   `);
 }
 

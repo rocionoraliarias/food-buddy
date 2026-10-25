@@ -6,7 +6,9 @@ Web app para guardar lugares con etiquetas y compartirlos por zona + categoría.
 
 Slice en curso: **lista de lugares + favorito** (marcar / desmarcar, también al guardar).
 
-Todavía no hay login, mapa ni compartir. Persistencia local con SQLite (`data/dev.db`) para poder desarrollar sin Neon ni Google Places.
+Todavía no hay login, mapa ni compartir. Persistencia local con SQLite (`data/dev.db`).
+
+Buscar en Google usa Places API (New) desde el servidor. Definí `GOOGLE_MAPS_API_KEY` en `.env.local`. Sin esa variable la carga manual sigue funcionando.
 
 Plan completo: [`docs/mvp-plan.md`](docs/mvp-plan.md).
 
