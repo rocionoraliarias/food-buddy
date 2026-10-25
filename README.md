@@ -1,21 +1,26 @@
 # food-buddy (working title: Share Buddy)
 
-Web app para guardar lugares con etiquetas y compartirlos por **zona + categoría**, sin armar una lista nueva en Google Maps.
-
-El caso que tiene que funcionar primero: filtrar cafés de Palermo y restaurantes de San Telmo, generar un link, abrirlo sin cuenta.
+Web app para guardar lugares con etiquetas y compartirlos por zona + categoría.
 
 ## Estado
 
-Aún no hay aplicación. El plan de arranque está en [`docs/mvp-plan.md`](docs/mvp-plan.md).
+Slice en curso: **lista de lugares + favorito** (marcar / desmarcar, también al guardar).
 
-**v0** (lo próximo a codear): login con Google, guardar lugares, agrupar por barrio/ciudad, filtrar, compartir link público de solo lectura.
+Todavía no hay login, mapa ni compartir. Persistencia local con SQLite (`data/dev.db`) para poder desarrollar sin Neon ni Google Places.
 
-## Stack (cerrado para v0)
+Plan completo: [`docs/mvp-plan.md`](docs/mvp-plan.md).
 
-Next.js + TypeScript · Tailwind/shadcn · MapLibre + OpenFreeMap · Google Places/Geocoding (server-side) · Neon Postgres + PostGIS · Drizzle · Auth.js (Google)
+## Desarrollo
 
-## Cómo se retoma
+```bash
+npm install
+npm test
+npm run dev
+```
 
-1. Leer `docs/mvp-plan.md` secciones 1, 2, 3 y 9.
-2. Completar el checklist de Google Cloud / Neon / Vercel (sección 13).
-3. Primer PR de código: scaffold (ítem 1 del backlog). No empezar por colaboración, import de URLs ni app nativa.
+Abrí [http://localhost:3000](http://localhost:3000). La primera carga siembra cuatro lugares de Palermo y San Telmo.
+
+- Agregar un lugar (nombre obligatorio).
+- Checkbox **Guardar como favorito** al crear.
+- Estrella en cada fila para agregar o quitar de favoritos.
+- Filtro **Todos / Favoritos**.
